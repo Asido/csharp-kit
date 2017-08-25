@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "prismicio", "src\prismicio\prismicio.csproj", "{CBDA38BB-0F37-47FA-B3DD-17B13062055D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prismicio.test", "src\prismicio.test\prismicio.test.csproj", "{254FE7EA-1199-4E4B-BA97-5C5185371B1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBDA38BB-0F37-47FA-B3DD-17B13062055D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDA38BB-0F37-47FA-B3DD-17B13062055D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDA38BB-0F37-47FA-B3DD-17B13062055D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDA38BB-0F37-47FA-B3DD-17B13062055D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254FE7EA-1199-4E4B-BA97-5C5185371B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254FE7EA-1199-4E4B-BA97-5C5185371B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254FE7EA-1199-4E4B-BA97-5C5185371B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254FE7EA-1199-4E4B-BA97-5C5185371B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0556B16-372C-4C02-9F5D-52785AF8564C}
+	EndGlobalSection
+EndGlobal

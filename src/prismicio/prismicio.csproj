@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackageId>prismicio.core</PackageId>
+    <PackageLicenseUrl />
+    <Copyright>Copyright 2014</Copyright>
+    <PackageTags>prismic.io dotnet net core</PackageTags>
+    <PackageProjectUrl>https://github.com/Asido/csharp-kit</PackageProjectUrl>
+    <RepositoryUrl />
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+</Project>
