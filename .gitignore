@@ -1,6 +1,8 @@
 #Autosave files
 *~
 
+.vs
+
 # Build/test output
 obj
 bin
