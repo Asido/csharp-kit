@@ -199,9 +199,17 @@ namespace prismic
 				}
 			}
 
-			public WebLink(String url, String contentType) {
+		    private String target;
+
+		    public String Target
+		    {
+		        get { return target; }
+		    }
+
+			public WebLink(String url, String contentType, String target) {
 				this.url = url;
 				this.contentType = contentType;
+			    this.target = target;
 			}
 
 			public String GetUrl(DocumentLinkResolver resolver) {
@@ -209,11 +217,11 @@ namespace prismic
 			}
 
 			public String AsHtml() {
-				return ("<a href=\"" + url + "\">" + url + "</a>");
+				return "<a href=\"" + url + "\"" + (!string.IsNullOrEmpty(target) ? " target=\"" + target + "\" rel=\"noopener\""  : "") + ">" + url + "</a>";
 			}
 
 			public static WebLink Parse(JToken json) {
-				return new WebLink((string)json["url"], null);
+				return new WebLink((string)json["url"], null, (string)json["target"]);
 			}
 
 		}
@@ -332,14 +340,21 @@ namespace prismic
 					return broken;
 				}
 			}
+			private String lang;
+			public String Lang {
+				get {
+					return lang;
+				}
+			}
 
-			public DocumentLink(String id, String uid, String type, ISet<String> tags, String slug, IDictionary<String,Fragment> fragments, Boolean broken): base(fragments) {
+			public DocumentLink(String id, String uid, String type, ISet<String> tags, String slug, String lang, IDictionary<String,Fragment> fragments, Boolean broken): base(fragments) {
 				this.id = id;
 				this.uid = uid;
 				this.type = type;
 				this.tags = tags;
 				this.slug = slug;
 				this.broken = broken;
+				this.lang = lang;
 			}
 
 			public String GetUrl(DocumentLinkResolver resolver) {
@@ -356,6 +371,7 @@ namespace prismic
 				string id = (string)document["id"];
 				string type = (string)document["type"];
 				string slug = (string)document["slug"];
+				string lang = (string)document["lang"];
 				string uid = null;
 				if (document["uid"] != null)
 					uid = (string)document["uid"];
@@ -365,7 +381,7 @@ namespace prismic
 				else
 					tags = new HashSet<String> ();
 				IDictionary<String, Fragment> fragments = Document.parseFragments (json["document"]);
-				return new DocumentLink(id, uid, type, tags, slug, fragments, broken);
+				return new DocumentLink(id, uid, type, tags, slug, lang, fragments, broken);
 			}
 
 		}
@@ -405,14 +421,10 @@ namespace prismic
 			public String AsHtml() {
 				return ("<time>" + value + "</time>");
 			}
-            public static Timestamp Parse(JToken json)
-            {
-                if (((JValue)json).Value == null)
-                    return new Timestamp(DateTime.MinValue);
-                else
-                    return new Timestamp(json.ToObject<DateTime>());
-            }
-        }
+			public static Timestamp Parse(JToken json) {
+				return new Timestamp(json.ToObject<DateTime>());
+			}
+		}
 
 		public class Embed: Fragment {
 			private String type;
@@ -699,6 +711,33 @@ namespace prismic
 				}
 			}
 		}
+		
+		public class Raw : Fragment
+		{
+		    private readonly JToken value;
+
+		    public JToken Value
+		    {
+			get
+			{
+			    return value;
+			}
+		    }
+		    public Raw(JToken json)
+		    {
+			this.value = json;
+		    }
+
+		    public String AsText()
+		    {
+			return this.value.ToString();
+		    }
+
+		    public static Raw Parse(JToken json)
+		    {
+			return new Raw(json);
+		    }
+		}
 
 		public static class FragmentParser {
 			public static Fragment Parse(String type, JToken json) {
@@ -736,7 +775,7 @@ namespace prismic
 				case "SliceZone":
 					return SliceZone.Parse(json);
 				default:
-					return null;
+					return json != null ? Raw.Parse(json) : null;
 				}
 		}
 
