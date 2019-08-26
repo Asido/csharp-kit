@@ -6,9 +6,9 @@
     <PackageLicenseUrl />
     <Copyright>Copyright 2014</Copyright>
     <PackageTags>prismic.io dotnet net core</PackageTags>
-    <PackageProjectUrl>https://github.com/Asido/csharp-kit</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/asido/csharp-kit</PackageProjectUrl>
     <RepositoryUrl />
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
